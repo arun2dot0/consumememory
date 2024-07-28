@@ -49,7 +49,7 @@ kubectl get pods
 kubectl get services 
 kubectl get hpa
 ```
-It should look like this 
+
 
 
 ### Simple test 
