@@ -1,26 +1,22 @@
 package com.consumememory.demo;
 
-
-
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.IntStream;
 
 
 @RestController
 public class ConsumeMemoryController {
 
-    private final List<double[][]> storedMatrices = new ArrayList<>();
+    CopyOnWriteArrayList<double[][]> storedMatrices = new CopyOnWriteArrayList<>();
 
     @GetMapping("/consume-memory")
-    public String consumeMemory(@RequestParam(defaultValue = "10") int matrixSize ,@RequestParam(defaultValue = "1000") int iterationCount) {
+    public String consumeMemory(@RequestParam(defaultValue = "10") int matrixSize ,@RequestParam(defaultValue = "10000") int iterationCount) {
                 IntStream.range(1,iterationCount).forEach( i -> {
                 double[][] matrix1 = generateRandomMatrix(matrixSize);
                 double[][] matrix2 = generateRandomMatrix(matrixSize);
@@ -65,10 +61,10 @@ public class ConsumeMemoryController {
         return result;
     }
 
+    @Scheduled(fixedDelay = 300000)
     public void clearStoredMatrices() {
-        synchronized(storedMatrices) {
-            storedMatrices.clear();
-        }
+        storedMatrices.clear();
+        storedMatrices  = new CopyOnWriteArrayList<>();
         System.gc(); // Request garbage collection
         System.out.println("Cleared stored matrices. Current memory usage: " +
                 (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (1024 * 1024) + " MB");
