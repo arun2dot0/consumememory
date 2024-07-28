@@ -27,7 +27,7 @@ be desired .
 
 Minikube steps using LoadBalancer Option 
 ```
-minikube start 
+minikube start --container-runtime=containerd
 minikube image load consumememory-app:1.0
 minikube addons enable metrics-server
 minikube tunnel ( Run in a new window and keep it open)
@@ -69,15 +69,17 @@ now its serverd from k8s
 I am using hey for testing ,you can also use ab test 
 checkout options here https://github.com/rakyll/hey
 
-Running 500 request  with 20 workers with rate limit of 40 per second 
+Running 200 request  with 20 workers with rate limit of 40 per second 
 ```
-hey -n 500 -c 20 -q 40 "http://localhost:8080/consume-memory"
+hey -n 100 -c 20 -q 40 "http://localhost:8080/consume-memory"
 ```
 Keep running again if you want to see scale up to maximum 
 
 then you can clear using curl to test scale down
 
-```hey -n 100 -c 1 -q 10 "http://localhost:8080/clear" ```
+```
+hey -n 20 -c 1 -q 10 "http://localhost:8080/clear" 
+```
 Runing multiple times as it has to hit different pods 
 
 ###Test ScaleUp and ScaleDown (as test completes)

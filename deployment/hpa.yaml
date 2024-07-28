@@ -1,4 +1,4 @@
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: consumememory-app-hpa
@@ -12,7 +12,7 @@ spec:
   metrics:
     - type: Resource
       resource:
-        name: memory
+        name: cpu
         target:
           type: Utilization
           averageUtilization: 70
@@ -28,12 +28,12 @@ spec:
           periodSeconds: 15
       selectPolicy: Max
     scaleDown:
-      stabilizationWindowSeconds: 0
+      stabilizationWindowSeconds: 30
       policies:
         - type: Percent
-          value: 33
-          periodSeconds: 30
+          value: 20
+          periodSeconds: 60
         - type: Pods
           value: 1
-          periodSeconds: 30
+          periodSeconds: 60
       selectPolicy: Min
