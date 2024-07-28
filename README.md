@@ -69,7 +69,7 @@ now its serverd from k8s
 I am using hey for testing ,you can also use ab test 
 checkout options here https://github.com/rakyll/hey
 
-Running 200 request  with 20 workers with rate limit of 40 per second 
+Running 100 request  with 20 workers with rate limit of 40 per second 
 ```
 hey -n 100 -c 20 -q 40 "http://localhost:8080/consume-memory"
 ```
