@@ -6,6 +6,7 @@ down there is a scheduler that frees up the memory every 60 seconds .
 It will test the kubernetes pods scale up as number of api request increase and scale down 
 as the request go down . 
 
+![Screenshot 2024-07-27 at 10 14 52 PM](https://github.com/user-attachments/assets/64bec543-180a-478c-bc35-01dfc25369ae)
 
 using hey testing tool for high number of api calls required to scale up 
 
@@ -89,6 +90,7 @@ watch -n 1 kubectl top pods
 watch -n 1 kubectl describe hpa consumememory-app-hpa
 ```
 Scale up as the test runs
+![Screenshot 2024-07-27 at 10 04 26 PM](https://github.com/user-attachments/assets/3178fc40-f5b4-4ce8-97e4-f7b7913b7693)
 
 Scale down as tests complete , there is a scheduler in spring application to free up every 60 seconds
 
