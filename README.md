@@ -102,6 +102,8 @@ kubectl delete deployment consumememory-app
 kubectl delete service consumememory-app-service
 kubectl delete hpa consumememory-app-hpa
 ```
+### Scale down used cpu option
+![Screenshot 2024-07-28 at 2 18 11 PM](https://github.com/user-attachments/assets/e64270eb-e20d-49ff-8323-9efe3b66f838)
 
 
 ### Debugging
