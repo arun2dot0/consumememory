@@ -64,7 +64,7 @@ minikube service consumememory-app-service --url
 ```
 now its serverd from k8s 
 
-###Test scale
+### Test scale
 
 I am using hey for testing ,you can also use ab test 
 checkout options here https://github.com/rakyll/hey
@@ -82,7 +82,7 @@ hey -n 20 -c 1 -q 10 "http://localhost:8080/clear"
 ```
 Runing multiple times as it has to hit different pods 
 
-###Test ScaleUp and ScaleDown (as test completes)
+### Test ScaleUp and ScaleDown (as test completes)
 ```
 execute all of them in different tabs to watch 
 
